@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.deepblue.springbatch.chapter_13.mapper.MineRecordMapper">
+
+    <sql id="BaseSQL">
+        id, task_id, login_name, customer_id, phone, remark, status, create_time, update_time
+    </sql>
+
+    <select id="selectListAfterId" resultType="com.deepblue.springbatch.chapter_13.entity.MineRecord">
+        SELECT <include refid="BaseSQL"/> FROM mine_record
+        <where>
+            status = 1
+            <if test="taskId != null and taskId != ''">
+                AND task_id = #{taskId}
+            </if>
+            <if test="lastId != null and lastId != ''">
+                AND id > #{lastId}
+            </if>
+        </where>
+        <if test="pageSize != null and pageSize != ''">
+            LIMIT #{pageSize}
+        </if>
+    </select>
+
+    <select id="selectList" resultType="com.deepblue.springbatch.chapter_13.entity.MineRecord">
+        SELECT <include refid="BaseSQL"/> FROM mine_record
+        <where>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <update id="updateBatch">
+        UPDATE mine_record
+        SET status = CASE id
+        <foreach collection="records" item="record">
+            WHEN #{record.id} THEN #{record.status}
+        </foreach>
+        END
+        WHERE id IN
+        <foreach collection="records" item="record" separator="," open="(" close=")">
+            #{record.id}
+        </foreach>
+        AND status = 1
+    </update>
+
+</mapper>

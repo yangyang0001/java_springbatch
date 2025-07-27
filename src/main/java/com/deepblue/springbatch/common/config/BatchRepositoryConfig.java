@@ -23,7 +23,7 @@ public class BatchRepositoryConfig {
         return new Jackson2ExecutionContextStringSerializer();
     }
 
-    @Bean
+    @Bean(name = "primaryJobRepository")
     @Primary
     public JobRepository jobRepository(PlatformTransactionManager transactionManager,
                                        ExecutionContextSerializer executionContextSerializer) throws Exception {

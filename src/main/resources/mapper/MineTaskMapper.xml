@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.deepblue.springbatch.chapter_13.mapper.MineTaskMapper">
+
+    <sql id="BaseSQL">
+        id, task_id, task_name, status, create_time, update_time
+    </sql>
+
+    <select id="selectList" resultType="com.deepblue.springbatch.chapter_13.entity.MineTask">
+        select <include refid="BaseSQL" /> from mine_task where status = 1
+    </select>
+
+    <update id="updateTask">
+        update mine_task set status = 2 where task_id = #{taskId} and status = 1
+    </update>
+
+</mapper>
