@@ -2,10 +2,7 @@ package com.deepblue.springbatch.chapter_14.config;
 
 import com.deepblue.springbatch.chapter_13.entity.MineRecord;
 import com.deepblue.springbatch.chapter_13.mapper.MineRecordMapper;
-import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.item.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
