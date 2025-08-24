@@ -4,6 +4,10 @@ import java.util.List;
 
 public abstract class FilteBlackHandler<T> {
 
-    public abstract T filteBlack(T param);
+    public T filteBlack(T param) {
+        return doFilter(param);
+    }
+
+    public abstract T doFilter(T param);
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 public class WebsocketPushFilteBlackHandler<ObjectA> extends FilteBlackHandler <List<ObjectA>> {
 
     @Override
-    public List<ObjectA> filteBlack(List<ObjectA> param) {
+    public List<ObjectA> doFilter(List<ObjectA> param) {
         return List.of();
     }
 }

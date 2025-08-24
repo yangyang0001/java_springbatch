@@ -6,7 +6,7 @@ public class OpenEventPushFilteBlackHandler<ObjectB> extends FilteBlackHandler<L
 
 
     @Override
-    public List<ObjectB> filteBlack(List<ObjectB> param) {
+    public List<ObjectB> doFilter(List<ObjectB> param) {
         return List.of();
     }
 }
